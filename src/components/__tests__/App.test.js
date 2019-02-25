@@ -13,6 +13,7 @@ beforeEach(() => {
 });
 
 it('shows a comment box', () => {
+    // should only test for CommentBox existence, not the inner workings of CommentBox
     expect(wrappedComponent.find(CommentBox).length).toEqual(1);
 });
 
