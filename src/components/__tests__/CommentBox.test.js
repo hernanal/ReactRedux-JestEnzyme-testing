@@ -19,16 +19,26 @@ it('has a text area and a button', () => {
     expect(wrappedComponent.find('button').length).toEqual(1);
 });
 
-it('has a text area that users can type in', () => {
-    wrappedComponent.find('textarea')
-        .simulate('change', 
-            {
-                target: {
-                    value: 'new test comment'
+describe('text area functionality', () => {
+    beforeEach(() => {
+        wrappedComponent.find('textarea')
+            .simulate('change', 
+                {
+                    target: {
+                        value: 'new test comment'
+                    }
                 }
-            }
-    );
-    wrappedComponent.update();
+        );
+        wrappedComponent.update();
+    });
 
-    expect(wrappedComponent.find('textarea').prop('value')).toEqual('new test comment');
+    it('has a text area that users can type in', () => {
+        expect(wrappedComponent.find('textarea').prop('value')).toEqual('new test comment');
+    });
+
+    it('clears the text area after submitting the input', () => {
+        wrappedComponent.find('form').simulate('submit');
+        wrappedComponent.update();
+        expect(wrappedComponent.find('textarea').prop('value')).toEqual('');
+    });
 });
