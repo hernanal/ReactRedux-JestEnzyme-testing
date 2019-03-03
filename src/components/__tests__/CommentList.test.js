@@ -17,7 +17,12 @@ beforeEach(() => {
         </Root>
     );
 });
-
+ 
 it('creates one LI per comment', () => {
     expect(wrapped.find('li').length).toEqual(2);
+});
+
+it('shows the text for each comment', () => {
+    expect(wrapped.render().text()).toContain('Comment 1Comment');
+    expect(wrapped.render().text()).toContain('Comment 2')
 });
